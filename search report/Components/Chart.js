@@ -60,16 +60,16 @@ const data = [
 function Chart() {
   return (
     <div id="chart">
-      <h4 className="text-center" style={{ color: "red" }}>
+      <h4  style={{ color: "#7B8C92", fontSize:"medium", fontWeight:"500" ,marginLeft:"4px"}}>
         Number of Articles published for year
-      </h4>
+      </h4><br/>
       <ResponsiveContainer aspect={4 / 1}>
         <AreaChart data={data}>
           <XAxis dataKey="name" style={{ color: "red" }} />
           <YAxis />
           <Tooltip />
           <Area type="monotone" dataKey="uv" stroke="red" fill="skyblue" />
-          <CartesianGrid style={{ color: "gray" }} />
+          <CartesianGrid style={{ color: "#7B8C92" }} />
         </AreaChart>
       </ResponsiveContainer>
     </div>

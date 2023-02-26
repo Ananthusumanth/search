@@ -11,7 +11,7 @@ function Content() {
   return (
     <div>
       <div>
-        <Searchbar />
+        <Searchbar/>
       </div>
       <div>
         <Routes>

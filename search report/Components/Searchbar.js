@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import { Input } from "antd";
@@ -17,6 +17,7 @@ import { Button } from "react-bootstrap";
 function Searchbar() {
   const [data, setData] = useState(null);
   const [value, setValue] = useState();
+  const [title, setTitle] = useState("");
   const [paginatedData, setPaginatedData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -34,6 +35,7 @@ function Searchbar() {
         console.log("data featched", e.response.docs);
         setData(e.response.docs);
         setValue(value);
+        setTitle(value);
         setPaginatedData(_(e.response.docs).slice(0).take(pageSize).value());
       });
   };
@@ -76,7 +78,7 @@ function Searchbar() {
       <MDBContainer>
         <div>
           <MDBContainer>
-            <MDBRow >
+            <MDBRow>
               <MDBCol>
                 <Input
                   id="inp"
@@ -98,16 +100,33 @@ function Searchbar() {
         <br></br>
         <br></br>
         <MDBContainer>
-          <h5 className="text-center" style={{ color: "red" }}>
-            {" "}
-            **Here are your search results**
+          <h5
+            style={{
+              color: "#7B8C92",
+              fontSize: "medium",
+              fontWeight: "500",
+              marginLeft: "10px",
+            }}
+          >
+            Here are your search results "{title}"
           </h5>
-          <h4 style={{ color: "green" }}>{value}-report</h4>
+          <br />
           <MDBRow>
             <MDBCol>
               <MDBTable className="fixed-table">
                 <MDBTableHead>
-                  <tr id="th">
+                  <p
+                    style={{
+                      color: "#7B8C92",
+                      fontWeight: "500",
+                      fontSize: "medium",
+                      marginTop: "20px",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    ARTICLES
+                  </p>
+                  <tr id="th" style={{ color: "#7B8C92", fontSize: "medium" }}>
                     <th scope="col">Publisher_date</th>
                     <th scope="col">Headline</th>
                     <th scope="col">Summary</th>
@@ -119,15 +138,22 @@ function Searchbar() {
                   <MDBTableBody className="align-center  mb-0">
                     <tr>
                       <td colSpan={8} className="text-center mb-0">
-                        No Data Found
+                        <p
+                          style={{
+                            color: "#7B8C92",
+                            fontWeight: "500",
+                            fontSize: "medium",
+                          }}
+                        >
+                          No Data Found
+                        </p>
                       </td>
                     </tr>
                   </MDBTableBody>
                 ) : (
                   paginatedData.map((item, index) => (
-                    //console.log('map feached')
                     <MDBTableBody key={index}>
-                      <tr id="tr">
+                      <tr id="tr" color="#7B8C92">
                         <td>{item.pub_date}</td>
                         <td>{item.headline.print_headline}</td>
                         <td>{item.snippet}</td>
@@ -158,7 +184,9 @@ function Searchbar() {
             ))}
           </ul>
         </nav>
-        <Chart />
+        {
+          data.length === 0 ? (<p></p>):(<Chart/>)
+        }
       </MDBContainer>
     </div>
   );

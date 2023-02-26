@@ -13,7 +13,7 @@ function Sai() {
   
   return (
     <div className='homemenu'>
-      <div   style={{display: "flex", flexDirection: "row"}}>
+      <div   style={{display: "flex", flexDirection: "col"}}>
         <SideMenu/>
         <Content />
         
