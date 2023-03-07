@@ -4,7 +4,7 @@ import Searchbar from '../Components/Searchbar'
 function Articles() {
   return (
     <div className='container'>
-      uyfgcuihnjlkc
+      This is Articles
     </div>
   )
 }
